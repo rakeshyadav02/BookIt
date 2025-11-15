@@ -169,7 +169,7 @@ npm run seed
 *
 
 ### Booking Confirmation
-![Confirmation](./screenshots/confirmation.png)
+![Confirmation](./screenshots/booking.png)
 
 
 ---
