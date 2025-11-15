@@ -158,6 +158,22 @@ npm run seed
 
 ---
 
+## 📸 Screenshots
+
+### Home Page
+![Home Page](./screenshots/home.png)
+
+
+### Checkout
+![Checkout Page](./screenshots/checkout.png)
+*
+
+### Booking Confirmation
+![Confirmation](./screenshots/confirmation.png)
+
+
+---
+
 
 
 ## 🚀 Deployment
