@@ -1,4 +1,3 @@
-
 import Booking from '../models/Booking.js';
 import Slot from '../models/Slot.js';
 import Experience from '../models/Experience.js';
@@ -107,11 +106,7 @@ export const createBooking = async (req, res) => {
         console.error('Failed to rollback booking:', deleteError);
       }
     }
-<<<<<<< HEAD
-=======
-    
     console.error('Booking error:', error);
->>>>>>> 3ba68f8 ( Made some updates)
     res.status(500).json({
       success: false,
       message: error.message || 'Error creating booking',
