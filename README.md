@@ -30,7 +30,7 @@ A full-stack MERN application for discovering and booking travel experiences wit
 ### Clone & Install (All Platforms)
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/BookIt.git
+git clone https://github.com/rakeshyadav02/BookIt.git
 cd BookIt
 
 # Install server dependencies
@@ -153,19 +153,7 @@ npm run seed
 
 ---
 
-## 🐞 Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
-| `'vite' is not recognized` | Run `npm install` in `client/` directory |
-| `'patch-package' not found` | Install globally: `npm install -g patch-package` |
-| EBUSY/EPERM on Windows | Kill node: `taskkill /F /IM node.exe /T` (as Admin), then `npm install` |
-| MongoDB connection error | Verify `.env` URI, check IP whitelist in Atlas, ensure password is URL-encoded |
-| `querySrv ENOTFOUND` | URL-encode special characters: `@` → `%40`, `:` → `%3A` |
-
-**For detailed debugging:** Check npm log at `%APPDATA%\npm-cache\_logs\` (Windows) or `~/.npm/_logs/` (Unix)
-
----
 
 ## 🚀 Deployment
 
@@ -194,29 +182,6 @@ Deploy to Heroku, Railway, or Azure:
 
 ---
 
-## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
----
 
-## 📄 License
-
-This project is licensed under the MIT License – see the LICENSE file for details.
-
----
-
-## 📞 Support
-
-- Found a bug? Open an [Issue](https://github.com/YOUR_USERNAME/BookIt/issues)
-- Have a question? Start a [Discussion](https://github.com/YOUR_USERNAME/BookIt/discussions)
-
----
-
-**Last Updated:** November 2025  
-**Author:** Your Name  
-**Repository:** [GitHub Link](https://github.com/YOUR_USERNAME/BookIt)
