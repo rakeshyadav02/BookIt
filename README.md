@@ -45,13 +45,18 @@ cd ..
 
 ### Configure Environment
 
-1. Create `server/.env`:
+1. Create `server/.env` file in the server directory:
    ```env
    PORT=5000
-   MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/BookIt
+   MONGODB_URI=your_mongodb_connection_string_here
    NODE_ENV=development
    ```
-   **Note:** URL-encode special characters in your password (e.g., `@` → `%40`)
+
+   **⚠️ IMPORTANT SECURITY NOTE:**
+   - **NEVER** commit your `.env` file to git (it's in `.gitignore`)
+   - **NEVER** share your MongoDB credentials publicly
+   - Your `.env` file contains sensitive credentials and must be kept private
+   - If you accidentally expose credentials, rotate them immediately
 
 2. For MongoDB Atlas:
    - Create a cluster at [mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas)
@@ -174,11 +179,20 @@ Deploy to Heroku, Railway, or Azure:
 
 ## 📝 Environment Variables Reference
 
-| Variable | Example | Notes |
-|----------|---------|-------|
 | `PORT` | `5000` | Server port |
-| `MONGODB_URI` | `mongodb+srv://user:pass@cluster.mongodb.net/BookIt` | MongoDB connection string |
+| `MONGODB_URI` | `mongodb+srv://user:pass@cluster.mongodb.net/BookIt` | MongoDB connection string (keep private!) |
 | `NODE_ENV` | `development` | Set to `production` for deployment |
+
+---
+
+## 🔒 Security Best Practices
+
+- **Never commit `.env`** – It's in `.gitignore` for a reason
+- **Rotate credentials** if exposed accidentally
+- **Use environment variables** for all sensitive data in production
+- **URL-encode special characters** in MongoDB passwords (e.g., `@` → `%40`, `#` → `%23`)
+- **Use strong passwords** for database access
+- **Whitelist IPs** in MongoDB Atlas for production environments
 
 ---
 
