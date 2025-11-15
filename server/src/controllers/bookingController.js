@@ -1,3 +1,4 @@
+
 import Booking from '../models/Booking.js';
 import Slot from '../models/Slot.js';
 import Experience from '../models/Experience.js';
@@ -79,9 +80,7 @@ export const createBooking = async (req, res) => {
       status: 'confirmed',
     });
 
-    console.log('Creating booking with userInfo:', booking.userInfo);
     await booking.save();
-    console.log('Booking saved:', booking);
 
     // Mark slot as booked after successful booking creation
     slot.isBooked = true;
@@ -106,8 +105,6 @@ export const createBooking = async (req, res) => {
         console.error('Failed to rollback booking:', deleteError);
       }
     }
-    
-    console.error('Booking error:', error);
     res.status(500).json({
       success: false,
       message: error.message || 'Error creating booking',
@@ -118,7 +115,6 @@ export const createBooking = async (req, res) => {
 export const getBookingById = async (req, res) => {
   try {
     const { id } = req.params;
-    
     const booking = await Booking.findById(id)
       .populate('experienceId', 'title description images')
       .populate('slotId', 'date time');

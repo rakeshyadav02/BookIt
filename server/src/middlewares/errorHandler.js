@@ -1,9 +1,9 @@
+
 export const errorHandler = (err, req, res, next) => {
   // Only log errors that are not 404s
   if (err.status !== 404) {
     console.error(err.stack);
   }
-
   res.status(err.status || 500).json({
     success: false,
     message: err.message || 'Internal Server Error',
@@ -16,6 +16,3 @@ export const notFound = (req, res, next) => {
   error.status = 404;
   next(error);
 };
-
-
-

@@ -5,8 +5,6 @@ import bookingRoutes from './routes/bookingRoutes.js';
 import promoRoutes from './routes/promoRoutes.js';
 import { errorHandler, notFound } from './middlewares/errorHandler.js';
 
-
-
 const app = express();
 
 // Middleware
@@ -25,11 +23,10 @@ app.get('/', (req, res) => {
       experiences: '/api/experiences',
       bookings: '/api/bookings',
       promo: '/api/promo',
-    },
+    }
   });
 });
 
-// Routes
 app.use('/api/experiences', experienceRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/promo', promoRoutes);
@@ -47,6 +44,4 @@ app.use(notFound);
 app.use(errorHandler);
 
 export default app;
-
-
 
