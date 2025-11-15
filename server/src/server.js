@@ -16,6 +16,16 @@ const { default: connectDB } = await import('./config/db.js');
 // Connect to database
 connectDB();
 
+// Seed database on startup if in development mode
+if (process.env.NODE_ENV !== 'production') {
+  try {
+    console.log('🌱 Seeding database...');
+    await import('./scripts/seed.js');
+  } catch (err) {
+    console.warn('⚠️  Seeding failed:', err.message);
+  }
+}
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
