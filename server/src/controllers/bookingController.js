@@ -62,11 +62,15 @@ export const createBooking = async (req, res) => {
     const discount = promoCode ? calculateDiscount(promoCode, originalPrice) : 0;
     const totalPrice = Math.max(0, originalPrice - discount);
 
-    // Create and save booking first
+    // Create and save booking with user info
     booking = new Booking({
       experienceId,
       slotId,
-      userInfo,
+      userInfo: {
+        name: userInfo.name,
+        email: userInfo.email,
+        phone: userInfo.phone,
+      },
       selectedSlot,
       totalPrice,
       originalPrice,
@@ -75,7 +79,9 @@ export const createBooking = async (req, res) => {
       status: 'confirmed',
     });
 
+    console.log('Creating booking with userInfo:', booking.userInfo);
     await booking.save();
+    console.log('Booking saved:', booking);
 
     // Mark slot as booked after successful booking creation
     slot.isBooked = true;
@@ -101,6 +107,7 @@ export const createBooking = async (req, res) => {
       }
     }
     
+    console.error('Booking error:', error);
     res.status(500).json({
       success: false,
       message: error.message || 'Error creating booking',
