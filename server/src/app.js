@@ -8,7 +8,12 @@ import { errorHandler, notFound } from './middlewares/errorHandler.js';
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'https://your-frontend.vercel.app'
+  ]
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
