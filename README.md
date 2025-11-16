@@ -2,7 +2,23 @@
 
 A full-stack MERN application for discovering and booking travel experiences with real-time slot selection, promo code support, and safeguards against double-booking.
 
-**Tech Stack:** React 18 + Vite | TailwindCSS | Express.js | MongoDB Atlas | Mongoose
+---
+
+## 🌟 Table of Contents
+
+1. [Features](#features)
+2. [Tech Stack](#tech-stack)
+3. [Assumptions & Bonus Features](#assumptions--bonus-features)
+4. [Project Structure](#project-structure)
+5. [Screenshots](#screenshots)
+6. [Setup & Installation](#setup--installation)
+7. [Database Seeding](#database-seeding)
+8. [API Endpoints](#api-endpoints)
+9. [Deployment](#deployment)
+10. [Deployment Links](#deployment-links)
+11. [Environment Variables](#environment-variables)
+12. [Security Best Practices](#security-best-practices)
+13. [Troubleshooting & FAQ](#troubleshooting--faq)
 
 ---
 
@@ -17,52 +33,38 @@ A full-stack MERN application for discovering and booking travel experiences wit
 
 ---
 
-## 📋 Prerequisites
+## 🛠️ Tech Stack
 
-- **Node.js** v18+ (v20+ recommended)
-- **npm** (included with Node.js) or yarn
-- **MongoDB** – Local instance or MongoDB Atlas (cloud) cluster
+- React 18 + Vite
+- TailwindCSS
+- Express.js
+- MongoDB Atlas
+- Mongoose
 
 ---
 
-### Clone & Install (All Platforms)
+## 🧩 Assumptions & Bonus Features
 
+**Assumptions:**
+- No user authentication (all bookings are anonymous for demo purposes)
+- All promo codes are hardcoded and validated server-side
+- MongoDB Atlas cluster is secured and credentials are not exposed
+- Only public API endpoints are accessible; no admin or sensitive endpoints are exposed
+- Frontend and backend are deployed on separate platforms (Vercel/Render)
 
-```bash
-git clone https://github.com/rakeshyadav02/BookIt.git
-cd ../client
-1. Create `server/.env` file in the server directory:
-
-   PORT=5000
-   MONGODB_URI=your_mongodb_connection_string_here
-   NODE_ENV=development
-2. For MongoDB Atlas:
-   - Create a cluster at [mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas)
-
-# Terminal 1 - Backend (from BookIt/server)
-npm run dev
-
-```
-**Option 2: Single Command (Windows PowerShell)**
-
-.\start.ps1
-```
-
-**Option 3: Single Command (Linux/macOS)**
-
-```bash
-chmod +x start.sh
-./start.sh
-```
-
-The app will be available at:
-- **Frontend:** http://localhost:3000
-- **Backend API:** http://localhost:5000/api
+**Bonus Features:**
+- Real-time slot availability updates to prevent double-booking
+- Responsive UI with TailwindCSS
+- Promo code system supporting both percentage and flat discounts
+- Database seeding script for quick demo setup
+- CORS configured to allow only trusted frontend domains
+- Error handling middleware for clean API responses
 
 ---
 
 ## 📂 Project Structure
 
+```
 BookIt/
 ├── client/                 # React + Vite frontend
 │   ├── src/
@@ -90,6 +92,84 @@ BookIt/
 ├── README.md               # This file
 └── .gitignore
 ```
+
+---
+
+## 📸 Screenshots
+
+### Home Page
+![Home Page](./screenshots/home.png)
+
+### Checkout
+![Checkout Page](./screenshots/checkout.png)
+
+### Booking Confirmation
+![Confirmation](./screenshots/booking.png)
+
+---
+
+## ⚡ Setup & Installation
+
+### Prerequisites
+
+- **Node.js** v18+ (v20+ recommended)
+- **npm** (included with Node.js) or yarn
+- **MongoDB** – Local instance or MongoDB Atlas (cloud) cluster
+
+### Clone & Install
+
+```bash
+git clone https://github.com/rakeshyadav02/BookIt.git
+cd BookIt
+
+# Install server dependencies
+cd server
+npm install
+
+# Install client dependencies
+cd ../client
+npm install
+```
+
+### Configure Environment
+
+Create `server/.env` file in the server directory:
+```
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string_here
+NODE_ENV=development
+```
+
+For MongoDB Atlas:
+- Create a cluster at [mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas)
+- Add your IP to Network Access
+- Get the connection string from "Connect" button
+
+### Start Development Servers
+
+**Option 1: Separate Terminals**
+```bash
+# Terminal 1 - Backend (from BookIt/server)
+npm run dev
+
+# Terminal 2 - Frontend (from BookIt/client)
+npm run dev
+```
+
+**Option 2: Single Command (Windows PowerShell)**
+```powershell
+.\start.ps1
+```
+
+**Option 3: Single Command (Linux/macOS)**
+```bash
+chmod +x start.sh
+./start.sh
+```
+
+The app will be available at:
+- **Frontend:** http://localhost:3000
+- **Backend API:** http://localhost:5000/api
 
 ---
 
@@ -124,24 +204,6 @@ npm run seed
 
 ---
 
-## 📸 Screenshots
-
-### Home Page
-![Home Page](./screenshots/home.png)
-
-
-### Checkout
-![Checkout Page](./screenshots/checkout.png)
-*
-
-### Booking Confirmation
-![Confirmation](./screenshots/booking.png)
-
-
----
-
-
-
 ## 🚀 Deployment
 
 ### Frontend
@@ -159,11 +221,22 @@ Deploy to Heroku, Railway, or Azure:
 
 ---
 
-## 📝 Environment Variables Reference
+## 🌐 Deployment Links
 
-| `PORT` | `5000` | Server port |
-| `MONGODB_URI` | `mongodb+srv://user:pass@cluster.mongodb.net/BookIt` | MongoDB connection string (keep private!) |
-| `NODE_ENV` | `development` | Set to `production` for deployment |
+- **Frontend (Vercel):** [https://bookit-frontend.vercel.app](https://bookit-frontend.vercel.app)
+- **Backend (Render):** [https://bookit-backend.onrender.com/api](https://bookit-backend.onrender.com/api)
+
+*Note: Backend only exposes public API endpoints. No sensitive data or admin routes are accessible. For demo/testing only.*
+
+---
+
+## 📝 Environment Variables
+
+| Variable      | Example Value                                      | Description                        |
+|---------------|----------------------------------------------------|------------------------------------|
+| `PORT`        | `5000`                                             | Server port                        |
+| `MONGODB_URI` | `mongodb+srv://user:pass@cluster.mongodb.net/BookIt` | MongoDB connection string (private)|
+| `NODE_ENV`    | `development`                                      | Set to `production` for deployment |
 
 ---
 
@@ -175,6 +248,25 @@ Deploy to Heroku, Railway, or Azure:
 - **URL-encode special characters** in MongoDB passwords (e.g., `@` → `%40`, `#` → `%23`)
 - **Use strong passwords** for database access
 - **Whitelist IPs** in MongoDB Atlas for production environments
+
+---
+
+## ❓ Troubleshooting & FAQ
+
+**Q: I get a CORS error when accessing the API from the frontend.**  
+A: Ensure your frontend domain is included in the backend's CORS origin list. Update `server/src/app.js` if needed and redeploy.
+
+**Q: MongoDB connection fails.**  
+A: Double-check your `MONGODB_URI` in the `.env` file. Make sure your IP is whitelisted in MongoDB Atlas and credentials are correct.
+
+**Q: API requests return 404 or 500 errors.**  
+A: Confirm the backend is running and accessible. Check logs on Render for errors. Ensure the API base URL in the frontend matches the deployed backend URL.
+
+**Q: Booking fails or slots are unavailable.**  
+A: Slots may be fully booked or the database may need reseeding. Run `npm run seed` in the server directory to reset demo data.
+
+**Q: How do I keep my data secure?**  
+A: Never commit `.env` files or credentials. Use environment variables for all secrets. Only share public endpoints and restrict access to sensitive routes.
 
 ---
 
