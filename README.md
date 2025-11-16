@@ -30,37 +30,21 @@ A full-stack MERN application for discovering and booking travel experiences wit
 
 ```bash
 git clone https://github.com/rakeshyadav02/BookIt.git
-cd BookIt
-# Install client dependencies
 cd ../client
 1. Create `server/.env` file in the server directory:
+
    PORT=5000
    MONGODB_URI=your_mongodb_connection_string_here
    NODE_ENV=development
-   **⚠️ IMPORTANT SECURITY NOTE:**
-   - **NEVER** commit your `.env` file to git (it's in `.gitignore`)
-   - **NEVER** share your MongoDB credentials publicly
-   - If you accidentally expose credentials, rotate them immediately
-
 2. For MongoDB Atlas:
    - Create a cluster at [mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas)
-   - Add your IP to Network Access
-   - Get the connection string from "Connect" button
 
-### Start Development Servers
-
-**Option 1: Separate Terminals**
-
-```bash
 # Terminal 1 - Backend (from BookIt/server)
 npm run dev
 
-# Terminal 2 - Frontend (from BookIt/client)
-npm run dev
 ```
 **Option 2: Single Command (Windows PowerShell)**
 
-```powershell
 .\start.ps1
 ```
 
@@ -79,7 +63,6 @@ The app will be available at:
 
 ## 📂 Project Structure
 
-```
 BookIt/
 ├── client/                 # React + Vite frontend
 │   ├── src/
