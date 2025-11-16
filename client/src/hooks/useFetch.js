@@ -9,7 +9,8 @@ export const useFetch = (url, options = { immediate: true }) => {
     try {
       setLoading(true);
       setError(null);
-      const response = await fetch(`/api${url}`);
+      const baseUrl = import.meta.env.VITE_API_BASE_URL;
+      const response = await fetch(`${baseUrl}/api${url}`);
       
       let result;
       try {
