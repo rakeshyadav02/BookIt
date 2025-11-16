@@ -11,7 +11,9 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:3000',
-    'https://your-frontend.vercel.app'
+    'https://book-it-navy.vercel.app',
+    'https://book-it-git-master-ry986769-gmailcoms-projects.vercel.app',
+    'https://book-eqom883vk-ry986769-gmailcoms-projects.vercel.app'
   ]
 }));
 app.use(express.json());
