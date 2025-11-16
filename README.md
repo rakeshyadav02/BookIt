@@ -221,15 +221,6 @@ Deploy to Heroku, Railway, or Azure:
 
 ---
 
-## 🌐 Deployment Links
-
-- **Frontend (Vercel):** [https://bookit-frontend.vercel.app](https://bookit-frontend.vercel.app)
-- **Backend (Render):** [https://bookit-backend.onrender.com/api](https://bookit-backend.onrender.com/api)
-
-*Note: Backend only exposes public API endpoints. No sensitive data or admin routes are accessible. For demo/testing only.*
-
----
-
 ## 📝 Environment Variables
 
 | Variable      | Example Value                                      | Description                        |
@@ -267,6 +258,15 @@ A: Slots may be fully booked or the database may need reseeding. Run `npm run se
 
 **Q: How do I keep my data secure?**  
 A: Never commit `.env` files or credentials. Use environment variables for all secrets. Only share public endpoints and restrict access to sensitive routes.
+
+---
+
+## 🚀 Live Demo
+
+- **Frontend Demo:** [https://book-it-navy.vercel.app/](https://book-it-navy.vercel.app/)
+- **Backend API:** [https://bookit-gbne.onrender.com/](https://bookit-gbne.onrender.com/)
+
+*Visit the frontend link to interact with the app. The backend API is public for demo/testing purposes only and exposes only non-sensitive endpoints.*
 
 ---
 
