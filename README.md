@@ -86,7 +86,6 @@ BookIt/
 │   │   ├── middlewares/    # Error handling
 │   │   ├── utils/          # Utilities (promo codes)
 │   │   └── scripts/        # Database seeding
-│   ├── seed.js             # Seed entry point
 │   └── .env.example
 │
 ├── README.md               # This file
@@ -138,6 +137,12 @@ Create `server/.env` file in the server directory:
 PORT=5000
 MONGODB_URI=your_mongodb_connection_string_here
 NODE_ENV=development
+CORS_ORIGINS=http://localhost:3000
+```
+
+Create `client/.env` file in the client directory:
+```
+VITE_API_BASE_URL=http://localhost:5000
 ```
 
 For MongoDB Atlas:
@@ -228,6 +233,10 @@ Deploy to Heroku, Railway, or Azure:
 | `PORT`        | `5000`                                             | Server port                        |
 | `MONGODB_URI` | `mongodb+srv://user:pass@cluster.mongodb.net/BookIt` | MongoDB connection string (private)|
 | `NODE_ENV`    | `development`                                      | Set to `production` for deployment |
+| `CORS_ORIGINS` | `http://localhost:3000,https://your-frontend.vercel.app` | Allowed frontend origins (comma separated) |
+| `VITE_API_BASE_URL` | `http://localhost:5000`                      | Frontend API base URL              |
+| `PROMO_CODES_JSON` | `{"SAVE10":{"type":"percentage","value":10}}` | Optional promo code override JSON |
+| `SEED_TIME_SLOTS` | `09:00,10:00,11:00,14:00` | Optional slot times override for seed script |
 
 ---
 
@@ -245,7 +254,7 @@ Deploy to Heroku, Railway, or Azure:
 ## ❓ Troubleshooting & FAQ
 
 **Q: I get a CORS error when accessing the API from the frontend.**  
-A: Ensure your frontend domain is included in the backend's CORS origin list. Update `server/src/app.js` if needed and redeploy.
+A: Ensure your frontend domain is included in `CORS_ORIGINS` in `server/.env`, then restart the backend.
 
 **Q: MongoDB connection fails.**  
 A: Double-check your `MONGODB_URI` in the `.env` file. Make sure your IP is whitelisted in MongoDB Atlas and credentials are correct.

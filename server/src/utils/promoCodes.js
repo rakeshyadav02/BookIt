@@ -1,25 +1,59 @@
-const promoCodes = {
-  SAVE10: {
-    type: 'percentage',
-    value: 10,
-    description: '10% off on total price',
-  },
-  FLAT100: {
-    type: 'fixed',
-    value: 100,
-    description: 'Flat ₹100 off',
-  },
-  SUMMER20: {
-    type: 'percentage',
-    value: 20,
-    description: '20% off on total price',
-  },
-  WELCOME50: {
-    type: 'fixed',
-    value: 50,
-    description: 'Flat ₹50 off',
-  },
+import defaultPromoCodes from '../data/promoCodes.js';
+
+const normalizePromoCodes = (codes = {}) => {
+  const normalized = {};
+
+  Object.entries(codes).forEach(([rawCode, promo]) => {
+    const code = String(rawCode || '').trim().toUpperCase();
+
+    if (!code) {
+      return;
+    }
+
+    if (!promo || typeof promo !== 'object') {
+      return;
+    }
+
+    if (!['percentage', 'fixed'].includes(promo.type)) {
+      return;
+    }
+
+    const value = Number(promo.value);
+    if (!Number.isFinite(value) || value <= 0) {
+      return;
+    }
+
+    normalized[code] = {
+      type: promo.type,
+      value,
+      description: promo.description || '',
+    };
+  });
+
+  return normalized;
 };
+
+const resolvePromoCodes = () => {
+  const baseCodes = normalizePromoCodes(defaultPromoCodes);
+
+  const rawOverride = process.env.PROMO_CODES_JSON;
+  if (!rawOverride) {
+    return baseCodes;
+  }
+
+  try {
+    const parsed = JSON.parse(rawOverride);
+    return {
+      ...baseCodes,
+      ...normalizePromoCodes(parsed),
+    };
+  } catch (error) {
+    console.warn('Invalid PROMO_CODES_JSON. Falling back to default promo catalog.');
+    return baseCodes;
+  }
+};
+
+const promoCodes = resolvePromoCodes();
 
 export const validatePromoCode = (code) => {
   const promo = promoCodes[code?.toUpperCase()];

@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import api from '../services/api';
 
 export const useFetch = (url, options = { immediate: true }) => {
   const [data, setData] = useState(null);
@@ -9,23 +10,16 @@ export const useFetch = (url, options = { immediate: true }) => {
     try {
       setLoading(true);
       setError(null);
-      const baseUrl = import.meta.env.VITE_API_BASE_URL;
-      const response = await fetch(`${baseUrl}/api${url}`);
-      
-      let result;
-      try {
-        result = await response.json();
-      } catch (jsonError) {
-        throw new Error('Invalid response from server');
-      }
-      
-      if (!response.ok || !result.success) {
+      const response = await api.get(url);
+      const result = response.data;
+
+      if (!result?.success) {
         throw new Error(result.message || 'Something went wrong');
       }
-      
+
       setData(result.data);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      setError(err?.response?.data?.message || err?.message || 'An error occurred');
     } finally {
       setLoading(false);
     }

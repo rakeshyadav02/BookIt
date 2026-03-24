@@ -1,10 +1,11 @@
 import mongoose from 'mongoose';
+import { env } from './env.js';
 
 
 const connectDB = async () => {
   try {
     // Mongoose 6+ and MongoDB Node driver 4+ don't need/use the old options.
-    const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/bookit');
+    const conn = await mongoose.connect(env.mongoUri);
 
     // Connection success message
     console.log(`✅ MongoDB connected to ${conn.connection.host}/${conn.connection.name}`);

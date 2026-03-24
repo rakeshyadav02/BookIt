@@ -4,17 +4,25 @@ import experienceRoutes from './routes/experienceRoutes.js';
 import bookingRoutes from './routes/bookingRoutes.js';
 import promoRoutes from './routes/promoRoutes.js';
 import { errorHandler, notFound } from './middlewares/errorHandler.js';
+import { env } from './config/env.js';
 
 const app = express();
 
 // Middleware
 app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'https://book-it-navy.vercel.app',
-    'https://book-it-git-master-ry986769-gmailcoms-projects.vercel.app',
-    'https://book-eqom883vk-ry986769-gmailcoms-projects.vercel.app'
-  ]
+  origin: (origin, callback) => {
+    // Allow non-browser clients and same-origin requests.
+    if (!origin) {
+      return callback(null, true);
+    }
+
+    if (env.corsOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true,
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
